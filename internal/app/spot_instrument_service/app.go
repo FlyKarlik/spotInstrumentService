@@ -1,6 +1,7 @@
 package spot_instrument_service
 
 import (
+	"context"
 	"net"
 	"os"
 	"os/signal"
@@ -14,6 +15,7 @@ import (
 	"github.com/FlyKarlik/spotInstrumentService/internal/usecase"
 	"github.com/FlyKarlik/spotInstrumentService/pkg/logger"
 	"github.com/FlyKarlik/spotInstrumentService/pkg/metric"
+	"github.com/FlyKarlik/spotInstrumentService/pkg/tracer"
 	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"google.golang.org/grpc"
 )
@@ -89,6 +91,7 @@ func (s *SpotInstrumentService) mustSetupTracer() {
 	const method = "mustSetupTracer"
 	const layer = "app"
 
+	tracer.New(context.Background(), s.cfg)
 	s.logger.Info(layer, method, "setting up tracing")
 }
 
