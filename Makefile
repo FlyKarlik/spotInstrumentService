@@ -26,4 +26,4 @@ test:
 
 .PHONE: docker-build
 docker-build:
-	docker build -t spot-instrument-service .
+	docker build -t flykarlikimages/spot:latest .
